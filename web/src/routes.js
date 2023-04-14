@@ -2,8 +2,8 @@ import React from "react";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 // Pages
-import Home from "./pages/Home.js";
-import About from "./pages/About.js";
+import Home from "./views/Home/Home.js";
+import About from "./views/About.js";
 
 const PageRoutes = () => {
     return (
