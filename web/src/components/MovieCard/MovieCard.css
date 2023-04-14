@@ -1,0 +1,50 @@
+.movie-card-container {
+    width: 286px;
+    height: 230px;
+    border: 1px solid #00000042;
+    border-radius: 10px;
+}
+
+.movie-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #120f0f;
+}
+
+.movie-vote {
+    color: red;
+}
+
+.movie-card-sub-container {
+    display: flex;
+    width: calc(100% - 20px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+img {
+    height: 430px;
+    width: 286px;
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+    background-color: rgb(64, 64, 228);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: rgba(64, 64, 228, 0.904);
+}
+
+.movie-name-and-vote-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
