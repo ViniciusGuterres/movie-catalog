@@ -1,7 +1,22 @@
 import { useState } from "react";
 import './MovieCard.css';
 
-export default function MovieCard({ imgEndPoint, name, description, voteAverage }) {
+export default function MovieCard({
+    imgEndPoint,
+    backdropPath,
+    name,
+    description,
+    voteAverage,
+    movieCardOnClickFunction
+}) {
+    const movieObj = {
+        imgEndPoint,
+        backdropPath,
+        name,
+        description,
+        voteAverage
+    };
+
     const buildCardInformation = () => {
         let descriptionSliced = description;
 
@@ -42,7 +57,7 @@ export default function MovieCard({ imgEndPoint, name, description, voteAverage 
         <div>
             <img
                 src={`https://image.tmdb.org/t/p/w300/${imgEndPoint}`}
-                onClick={() => clickAtMovieImg()}
+                onClick={() => movieCardOnClickFunction(movieObj)}
             />
 
             {buildCardInformation()}
