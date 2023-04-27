@@ -5,8 +5,6 @@ import { useState } from 'react';
 
 export default function MoviesList({ movies, genderTitle, movieCardOnClickFunction }) {
     const [moviesOrderBy, setMoviesOrderBy] = useState('voteAverageDesc');
-    const [filteredMovies, setFilteredMovies] = useState(movies);
-    console.log("🚀 ~ file: MoviesList.jsx:9 ~ MoviesList ~ filteredMovies:", filteredMovies)
     const [inputFilterValue, setInputFilterValue] = useState('');
 
     const dictionaryObj = {
@@ -159,31 +157,7 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
     }
 
     const handleChangeInputFilter = event => {
-        setInputFilterValue(event.target.value);
-        handleFilteredMoviesChange(event.target.value);
-    }
-
-    const handleFilteredMoviesChange = filteredValue => {
-        const removeAccentsRegex = /[\u0300-\u036f]/g;
-
-        let inputText = filteredValue.trim();
-        inputText = inputText.toLowerCase();
-        inputText = inputText.normalize("NFD").replace(removeAccentsRegex, "");
-
-        const moviesFilter = movies.filter(movie => {
-            const movieName = movie?.name;
-
-            if (movieName) {
-                // Removing Name and Identifier accents
-                movieName = movieName?.normalize("NFD")?.replace(removeAccentsRegex, "") || '';
-
-                if (movieName?.includes(inputText))  {
-                    return movie;
-                }
-            }
-        });
-
-        setFilteredMovies(moviesFilter);
+        setInputFilterValue(event.target.value)
     }
 
     return (
