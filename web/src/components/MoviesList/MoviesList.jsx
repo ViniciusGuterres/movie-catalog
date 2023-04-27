@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 export default function MoviesList({ movies, genderTitle, movieCardOnClickFunction }) {
     const [moviesOrderBy, setMoviesOrderBy] = useState('voteAverageDesc');
-    const [inputFilterValue, setInputFilterValue] = useState('');
 
     const dictionaryObj = {
         'action': 'Ação',
@@ -156,24 +155,9 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
         );
     }
 
-    const handleChangeInputFilter = event => {
-        setInputFilterValue(event.target.value)
-    }
-
     return (
         <div>
             <div className='filters-container'>
-                <div className='input-text-container'>
-                    <span>
-                        Pesquisar filme:
-                    </span>
-
-                    <input
-                        value={inputFilterValue}
-                        onChange={handleChangeInputFilter}
-                    />
-                </div>
-
                 {buildMovieOrderSelectElement()}
             </div>
 
