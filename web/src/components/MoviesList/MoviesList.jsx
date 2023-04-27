@@ -5,13 +5,15 @@ import { useState } from 'react';
 
 export default function MoviesList({ movies, genderTitle, movieCardOnClickFunction }) {
     const [moviesOrderBy, setMoviesOrderBy] = useState('voteAverageDesc');
+    const [filteredMovies, setFilteredMovies] = useState(movies);
+    const [inputFilterValue, setInputFilterValue] = useState('');
 
     const dictionaryObj = {
         'action': 'Ação',
         'originals': 'Originais',
         'toprated': 'Mais assistidos',
         'comedy': 'Comédia'
-    }
+    };
 
     const moviesOrderByOptions = {
         nameDesc: 'Ordenar por ordem alfabética - decrescente',
@@ -41,14 +43,14 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
             const movieBReleaseDate = movieB?.release_date ? new Date(movieB.release_date) : 0;
 
             // Case is sorted by name ASC
-            if (moviesOrderBy == 'nameDesc') {
+            if (moviesOrderBy === 'nameDesc') {
                 if (movieAName < movieBName) return -1;
                 if (movieA > movieBName) return 1;
 
                 return 0;
             }
             // Case is sorted by name DESC
-            if (moviesOrderBy == 'nameAsc') {
+            if (moviesOrderBy === 'nameAsc') {
                 if (movieAName > movieBName) return -1;
                 if (movieA < movieBName) return 1;
 
@@ -56,7 +58,7 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
             }
 
             // Case is sorted by vote average Desc
-            if (moviesOrderBy == 'voteAverageDesc') {
+            if (moviesOrderBy === 'voteAverageDesc') {
                 if (movieAVoteAverage > movieBVoteAverage) return -1;
                 if (movieAVoteAverage < movieBVoteAverage) return 1;
 
@@ -64,7 +66,7 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
             }
 
             // Case is sorted by vote average Asc
-            if (moviesOrderBy == 'voteAverageAsc') {
+            if (moviesOrderBy === 'voteAverageAsc') {
                 if (movieAVoteAverage < movieBVoteAverage) return -1;
                 if (movieAVoteAverage > movieBVoteAverage) return 1;
 
@@ -72,7 +74,7 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
             }
 
             // Case is sorted by vote release date Desc
-            if (moviesOrderBy == 'releaseDateDesc') {
+            if (moviesOrderBy === 'releaseDateDesc') {
                 if (Number(movieAReleaseDate) > Number(movieBReleaseDate)) return -1;
                 if (Number(movieAReleaseDate) < Number(movieBReleaseDate)) return 1;
 
@@ -80,7 +82,7 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
             }
 
             // Case is sorted by vote release date Asc
-            if (moviesOrderBy == 'releaseDateAsc') {
+            if (moviesOrderBy === 'releaseDateAsc') {
                 if (Number(movieAReleaseDate) < Number(movieBReleaseDate)) return -1;
                 if (Number(movieAReleaseDate) > Number(movieBReleaseDate)) return 1;
 
@@ -155,10 +157,47 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
         );
     }
 
+    const handleChangeInputFilter = event => {
+        setInputFilterValue(event.target.value);
+        handleFilteredMoviesChange(event.target.value);
+    }
+
+    const handleFilteredMoviesChange = filteredValue => {
+        const removeAccentsRegex = /[\u0300-\u036f]/g;
+
+        let inputText = filteredValue.trim();
+        inputText = inputText.toLowerCase();
+        inputText = inputText.normalize("NFD").replace(removeAccentsRegex, "");
+
+        const moviesFilter = movies.filter(movie => {
+            const movieName = movie?.name;
+
+            if (movieName) {
+                // Removing Name and Identifier accents
+                movieName = movieName?.normalize("NFD")?.replace(removeAccentsRegex, "") || '';
+
+                if (movieName?.includes(inputText))  {
+                    return movie;
+                }
+            }
+        });
+
+        setFilteredMovies(moviesFilter);
+    }
+
     return (
         <div>
             <div className='filters-container'>
-                <input />
+                <div>
+                    <span>
+                        Pesquisar filme
+                    </span>
+
+                    <input
+                        value={inputFilterValue}
+                        onChange={handleChangeInputFilter}
+                    />
+                </div>
 
                 {buildMovieOrderSelectElement()}
             </div>
