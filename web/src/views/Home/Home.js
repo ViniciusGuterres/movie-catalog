@@ -14,6 +14,15 @@ export default function Home() {
   const [movies, setMoviesList] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  const moviesOrderByOptions = {
+    nameDesc: 'Ordenar por ordem alfabética - decrescente',
+    nameAsc: 'Ordenar por ordem alfabética - crescente',
+    voteAverageDesc: 'Ordenar por melhor nota',
+    voteAverageAsc: 'Ordenar por pior nota',
+    releaseDateDesc: 'Ordenar por ordem de lançamento - decrescente',
+    releaseDateAsc: 'Ordenar por ordem de lançamento - crescente',
+  };
+
   useEffect(() => {
     Tmdb.getMovieList().then(movieList => {
       setMoviesList(movieList);
@@ -33,6 +42,7 @@ export default function Home() {
         movies={moviesList}
         genderTitle={gender}
         movieCardOnClickFunction={handleClickOnMovieDetails}
+        moviesOrderByOptions={moviesOrderByOptions}
       />
     );
   }
