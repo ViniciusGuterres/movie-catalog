@@ -49,6 +49,9 @@ export default function Home() {
             backdropImg={selectedMovie.backdropPath ? `https://image.tmdb.org/t/p/w500/${selectedMovie.backdropPath}` : ''}
             description={selectedMovie.description || ''}
             name={selectedMovie.name || ''}
+            voteAverage={selectedMovie.voteAverage || ''}
+            releaseDate={selectedMovie.releaseDate || ''}
+            setSelectedMovie={setSelectedMovie}
           />
           :
           null

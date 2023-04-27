@@ -15,13 +15,14 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
 
         for (let i = 0; i < movies.length; i++) {
             const {
-                original_title,
+                title,
                 adult,
                 vote_average,
                 overview,
                 poster_path,
                 backdrop_path,
-                id
+                id,
+                releaseDate
             } = movies[i];
 
             // Don't push adult gender movies and without overview
@@ -29,12 +30,13 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
                 moviesCardsElementsArray.push(
                     <MovieCard
                         key={`MovieCard_${id}`}
-                        name={original_title}
+                        name={title}
                         imgEndPoint={poster_path}
                         backdropPath={backdrop_path}
                         description={overview}
                         voteAverage={vote_average}
                         movieCardOnClickFunction={movieCardOnClickFunction}
+                        releaseDate={releaseDate}
                     />
                 );
             }

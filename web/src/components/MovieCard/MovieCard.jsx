@@ -1,4 +1,3 @@
-import { useState } from "react";
 import './MovieCard.css';
 
 export default function MovieCard({
@@ -7,6 +6,7 @@ export default function MovieCard({
     name,
     description,
     voteAverage,
+    releaseDate,
     movieCardOnClickFunction
 }) {
     const movieObj = {
@@ -14,7 +14,8 @@ export default function MovieCard({
         backdropPath,
         name,
         description,
-        voteAverage
+        voteAverage,
+        releaseDate
     };
 
     const buildCardInformation = () => {
@@ -32,7 +33,9 @@ export default function MovieCard({
                             {name}
                         </span>
 
-                        <strong className="movie-vote">{voteAverage}</strong>
+                        <strong className="movie-vote">
+                            {voteAverage}
+                        </strong>
                     </div>
 
                     <p>
@@ -45,12 +48,6 @@ export default function MovieCard({
                 </div>
             </div>
         )
-    }
-
-    const clickAtMovieImg = () => {
-        const movieTrailerUrl = `https://www.youtube.com/results?search_query=${name}trailer}`
-
-        window.open(movieTrailerUrl);
     }
 
     return (
