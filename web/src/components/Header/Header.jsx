@@ -22,16 +22,6 @@ export default function Header({ title }) {
 
                     <li className='header-list'>
                         <Link
-                            to={'/plans'}
-                        >
-                            <span className='header-list-span'>
-                                Sobre
-                            </span>
-                        </Link>
-                    </li>
-
-                    <li className='header-list'>
-                        <Link
                             to={'/about'}
                         >
                             <span className='header-list-span'>

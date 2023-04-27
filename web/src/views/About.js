@@ -8,6 +8,8 @@ export default function Home() {
             <Header
                 title='Filmes'
             />
+            
+                Desenvolvido por Vinicius Carvalho Guterres
 
             <Footer
                 title={'Desenvolvido por Vinicius Carvalho'}
