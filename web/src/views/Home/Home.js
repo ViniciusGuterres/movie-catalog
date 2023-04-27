@@ -62,8 +62,6 @@ export default function Home() {
       <div className='movies-list-container'>
         {buildMoviesList('action')}
 
-        {buildMoviesList('originals')}
-
         {buildMoviesList('toprated')}
 
         {buildMoviesList('comedy')}

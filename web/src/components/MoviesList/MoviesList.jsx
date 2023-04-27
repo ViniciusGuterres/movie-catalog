@@ -189,9 +189,9 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
     return (
         <div>
             <div className='filters-container'>
-                <div>
+                <div className='input-text-container'>
                     <span>
-                        Pesquisar filme
+                        Pesquisar filme:
                     </span>
 
                     <input
