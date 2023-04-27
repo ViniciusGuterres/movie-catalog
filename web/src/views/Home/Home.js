@@ -17,12 +17,10 @@ export default function Home() {
   useEffect(() => {
     Tmdb.getMovieList().then(movieList => {
       setMoviesList(movieList);
-      console.log("🚀 ~ file: Home.js:23 ~ Tmdb.getMovieList ~ movieList:", movieList)
     });
   }, []);
 
   const handleClickOnMovieDetails = movie => {
-    console.log('movie:: ', movie);
     setSelectedMovie(movie);
   }
 
