@@ -6,6 +6,7 @@ import { useState } from 'react';
 export default function MoviesList({ movies, genderTitle, movieCardOnClickFunction }) {
     const [moviesOrderBy, setMoviesOrderBy] = useState('voteAverageDesc');
     const [filteredMovies, setFilteredMovies] = useState(movies);
+    console.log("🚀 ~ file: MoviesList.jsx:9 ~ MoviesList ~ filteredMovies:", filteredMovies)
     const [inputFilterValue, setInputFilterValue] = useState('');
 
     const dictionaryObj = {

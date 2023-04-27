@@ -7,7 +7,6 @@ export default function MovieDetailsModal({
     description,
     voteAverage,
     releaseDate,
-    popularity,
     setSelectedMovie,
 }) {
     useEffect(() => {
@@ -50,6 +49,9 @@ export default function MovieDetailsModal({
         window.open(movieTrailerUrl);
     }
 
+    const releaseDateFormatted = releaseDate.split('-').reverse().join('/');
+    console.log("🚀 ~ file: MovieDetailsModal.jsx:54 ~ releaseDateFormatted:", releaseDateFormatted)
+
     return (
         <div className="overlay">
             <div
@@ -73,15 +75,13 @@ export default function MovieDetailsModal({
                 <div className='divider'></div>
 
                 <div className='title-and-vote-container'>
-                    <h1>{name}</h1>
+                    <span className='movie-name'>{name}</span>
 
-                    <span>{voteAverage}</span>
+                    <span className='movie-vote'>{voteAverage}</span>
                 </div>
 
                 <div className='release-date-and-popularity-container'>
-                    <h1>{releaseDate}</h1>
-
-                    <span>{popularity}</span>
+                    <span className='release-date'>{releaseDateFormatted}</span>
                 </div>
 
                 <div className='description-container'>
@@ -90,6 +90,7 @@ export default function MovieDetailsModal({
 
                 <div className='watch-movie-button-container'>
                     <button
+                        className='watch-movie-button'
                         onClick={watchMovie}
                     >
                         Assistir

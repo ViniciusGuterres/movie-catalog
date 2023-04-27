@@ -10,24 +10,78 @@
 }
 
 .movie-modal-main-container {
-    width: 70%;
-    height: 70%;
-    background-color: red;
+    width: 50%;
+    /* height: 60%; */
+    background-color: #000000ef;
     border-radius: 10px;
+    position: relative;
+    color: #fff;
+    padding: 20px;
+    overflow: auto;
 }
 
 .backdrop-img-container {
     display: flex;
-    justify-items: center;
+    justify-content: center;
+    align-items: center;
     width: 100%;
 }
 
 .backdrop-img {
     width: 450px;
-    height: 280px;
+    height: 240px;
+    cursor: default;
+    border-radius: 10px;
 }
 
 .close {
     font-size: 45px;
     font-weight: 600;
+    position: absolute;
+    color: #ccc;
+    cursor: pointer;
+    right: 10px;
+    top: 0px;
+}
+
+.title-and-vote-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.movie-name {
+    color: #fff !important;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.movie-vote {
+    color: red !important;
+    font-size: 25px;
+    font-weight: 700;
+} 
+
+.watch-movie-button-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.watch-movie-button {
+    width: 70px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.release-date-and-popularity-container {
+    margin-top: 10px;
+}
+
+.release-date {
+    
 }
