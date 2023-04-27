@@ -48,3 +48,8 @@ button:hover {
     display: flex;
     justify-content: space-between;
 }
+
+.description-container {
+    height: 150px;
+    overflow: auto;
+}

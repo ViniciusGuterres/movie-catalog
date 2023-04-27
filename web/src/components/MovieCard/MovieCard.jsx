@@ -38,11 +38,13 @@ export default function MovieCard({
                         </strong>
                     </div>
 
-                    <p>
-                        {descriptionSliced}
-                    </p>
+                    <div className='description-container'>
+                        <p>
+                            {descriptionSliced}
+                        </p>
+                    </div>
 
-                    <button>
+                    <button onClick={() => movieCardOnClickFunction(movieObj)} >
                         Detalhes
                     </button>
                 </div>
