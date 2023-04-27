@@ -3,8 +3,8 @@ import './MoviesList.css';
 import MovieCard from '../MovieCard/MovieCard.jsx';
 import { useState } from 'react';
 
-export default function MoviesList({ movies, genderTitle, movieCardOnClickFunction, moviesOrderByOptions }) {
-    const [moviesOrderBy, setMoviesOrderBy] = useState('releaseDateAsc');
+export default function MoviesList({ movies, genderTitle, movieCardOnClickFunction }) {
+    const [moviesOrderBy, setMoviesOrderBy] = useState('voteAverageDesc');
 
     const dictionaryObj = {
         'action': 'Ação',
@@ -12,6 +12,15 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
         'toprated': 'Mais assistidos',
         'comedy': 'Comédia'
     }
+
+    const moviesOrderByOptions = {
+        nameDesc: 'Ordenar por ordem alfabética - decrescente',
+        nameAsc: 'Ordenar por ordem alfabética - crescente',
+        voteAverageDesc: 'Ordenar por melhor nota',
+        voteAverageAsc: 'Ordenar por pior nota',
+        releaseDateDesc: 'Ordenar por ordem de lançamento - decrescente',
+        releaseDateAsc: 'Ordenar por ordem de lançamento - crescente',
+    };
 
     const handleChangeOrderFilter = event => {
         setMoviesOrderBy(event?.target?.value);
