@@ -46,6 +46,9 @@ export default function Register() {
             planType
         };
 
+        const cvcLength = creditCardCVCValue?.toString()?.length;
+        const creditNumberLength = creditCardNumberValue?.toString()?.length;
+
         if (
             !name ||
             !tel ||
@@ -56,6 +59,10 @@ export default function Register() {
             !planType
         ) {
             alert('Por favor, preencha todos os campos');
+        } else if (cvcLength > 3) {
+            alert('O CVC não pode ser maior que 3 digitos');
+        } else if (creditNumberLength > 20) {
+            alert('O número do cartão não pode ser maior que 20 digitos');
         } else {
             console.log('User: ', userReturnObj);
 
