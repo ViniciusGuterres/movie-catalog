@@ -5,6 +5,8 @@ import { useState } from 'react';
 
 export default function MoviesList({ movies, genderTitle, movieCardOnClickFunction }) {
     const [moviesOrderBy, setMoviesOrderBy] = useState('voteAverageDesc');
+    const [inputFilterValue, setInputFilterValue] = useState('');
+    const [filteredMovies, setFilteredMovies] = useState(null);
 
     const dictionaryObj = {
         'action': 'Ação',
@@ -29,8 +31,10 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
     const buildMoviesList = () => {
         const moviesCardsElementsArray = [];
 
+        const moviesArray = filteredMovies == null ? movies : filteredMovies;
+
         // Sorting the movie list
-        const moviesListSorted = movies.sort((movieA, movieB) => {
+        const moviesListSorted = moviesArray.sort((movieA, movieB) => {
             const movieAName = movieA.title?.toLowerCase() || '';
             const movieBName = movieB?.title?.toLowerCase() || '';
 
@@ -116,7 +120,7 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
                 );
             }
         }
-
+        
         return (
             <div className='list-main-container'>
                 <span className='list-title'>
@@ -124,7 +128,7 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
                 </span>
 
                 <div className='movies-list-container'>
-                    {moviesCardsElementsArray.slice(8)}
+                    {moviesCardsElementsArray}
                 </div>
             </div>
         )
@@ -155,9 +159,52 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
         );
     }
 
+    const handleFilteredMoviesChange = filteredValue => {
+        const removeAccentsRegex = /[\u0300-\u036f]/g;
+
+        let inputText = filteredValue.trim();
+        inputText = inputText.toLowerCase();
+        inputText = inputText.normalize("NFD").replace(removeAccentsRegex, "");
+
+        const moviesFilter = [];
+
+        for (let i = 0; i < movies.length; i++) {
+            const currentMovie = movies[i];
+            let movieName = currentMovie.title;
+
+            if (movieName) {
+                // Removing Name and Identifier accents
+                movieName = movieName?.normalize("NFD")?.replace(removeAccentsRegex, "") || '';
+                movieName = movieName?.toLowerCase();
+                
+                if (movieName?.includes(inputText)) {
+                    moviesFilter.push(currentMovie);
+                }
+            }
+        }
+
+        setFilteredMovies(moviesFilter);
+    }
+
+    const handleChangeInputFilter = event => {
+        setInputFilterValue(event.target.value);
+        handleFilteredMoviesChange(event.target.value)
+    }
+
     return (
         <div>
             <div className='filters-container'>
+                <div className='input-text-container'>
+                    <span>
+                        Pesquisar filme:
+                    </span>
+
+                    <input
+                        value={inputFilterValue}
+                        onChange={handleChangeInputFilter}
+                    />
+                </div>
+
                 {buildMovieOrderSelectElement()}
             </div>
 

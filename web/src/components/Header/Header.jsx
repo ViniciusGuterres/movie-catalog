@@ -22,6 +22,16 @@ export default function Header({ title }) {
 
                     <li className='header-list'>
                         <Link
+                            to={'/register'}
+                        >
+                            <span className='header-list-span'>
+                                Cadastro de assinante
+                            </span>
+                        </Link>
+                    </li>
+
+                    <li className='header-list'>
+                        <Link
                             to={'/about'}
                         >
                             <span className='header-list-span'>
