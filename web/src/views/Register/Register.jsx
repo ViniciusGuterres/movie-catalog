@@ -161,9 +161,9 @@ export default function Register() {
                     </form>
                 </div>
 
-                <div>
+                <div className='save-button-container'>
                     <button
-                        className='test'
+                        className='save-button'
                         onClick={handleSaveUser}
                     >
                         Assinar
