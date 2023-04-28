@@ -16,7 +16,10 @@ export default function Home() {
 
   useEffect(() => {
     Tmdb.getMovieList().then(movieList => {
-      setMoviesList(movieList);
+      // Timeout to show loading animation
+      setTimeout(() => {
+        setMoviesList(movieList);
+      }, 1000)
     });
   }, []);
 
@@ -24,16 +27,31 @@ export default function Home() {
     setSelectedMovie(movie);
   }
 
+  const skeletonElements = (
+    <div className='skeleton-elements-container'>
+      <div className='skeleton-elements loading-pulse'></div>
+      <div className='skeleton-elements loading-pulse'></div>
+      <div className='skeleton-elements loading-pulse'></div>
+      <div className='skeleton-elements loading-pulse'></div>
+      <div className='skeleton-elements loading-pulse'></div>
+    </div>
+  )
+
   const buildMoviesList = gender => {
     const moviesFilteredByGender = movies.filter(({ slug }) => slug === gender);
     const moviesList = moviesFilteredByGender[0]?.items?.results || [];
 
     return (
-      <MoviesList
-        movies={moviesList}
-        genderTitle={gender}
-        movieCardOnClickFunction={handleClickOnMovieDetails}
-      />
+      movies.length
+        ?
+        <MoviesList
+          movies={moviesList}
+          genderTitle={gender}
+          movieCardOnClickFunction={handleClickOnMovieDetails}
+        />
+        :
+        skeletonElements
+
     );
   }
 

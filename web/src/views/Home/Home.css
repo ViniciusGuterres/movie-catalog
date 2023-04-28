@@ -10,6 +10,24 @@
     margin-bottom: 50px;
 }
 
+.skeleton-elements-container {
+    display: flex;
+    gap: 10px;
+    width: calc(100% - 30px);
+    height: 100%;
+    margin: 30px;
+}
+
+.skeleton-elements {
+    width: 300px;
+    height: 400px;
+    background-color: #ccc;
+}
+
+.loading-pulse {
+    animation: loading-pulse 2.7s linear 0.2s infinite normal;
+}
+
 h1 {
     color: red;
 }
