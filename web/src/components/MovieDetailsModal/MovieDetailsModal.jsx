@@ -50,7 +50,6 @@ export default function MovieDetailsModal({
     }
 
     const releaseDateFormatted = releaseDate.split('-').reverse().join('/');
-    console.log("🚀 ~ file: MovieDetailsModal.jsx:54 ~ releaseDateFormatted:", releaseDateFormatted)
 
     return (
         <div className="overlay">
