@@ -5,10 +5,11 @@ import Footer from '../../components/Footer/Footer.jsx';
 import '../Register/Register.css';
 import { useState } from 'react';
 
-export default function Register() {    
+export default function Register() {
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
     const [address, setAddress] = useState('');
+    const [planType, setPlanType] = useState('');
 
     // credit card states
     const [creditCardCVCValue, setCreditCardCVCValue] = useState('');
@@ -40,13 +41,27 @@ export default function Register() {
             tel,
             address,
             creditCardCVCValue,
+            creditCardNumberValue,
             creditCardNameValue,
+            planType
         };
 
-        console.log('User: ', userReturnObj);
-        
-        cleanForms();
-        alert('Usuário cadastrado com sucesso');
+        if (
+            !name ||
+            !tel ||
+            !address ||
+            !creditCardCVCValue ||
+            !creditCardNameValue ||
+            !creditCardNumberValue ||
+            !planType
+        ) {
+            alert('Por favor, preencha todos os campos');
+        } else {
+            console.log('User: ', userReturnObj);
+
+            cleanForms();
+            alert('Usuário cadastrado com sucesso');
+        }
     }
 
     const cleanForms = () => {
@@ -91,8 +106,20 @@ export default function Register() {
                             onChange={event => setAddress(event.target.value)}
                         />
 
-                        <div>
+                        <div className='button-plan-type-container'>
+                            <button
+                                className={planType == 'free' ? 'button-plan-type-active' : 'button-plan-type'}
+                                onClick={() => setPlanType('free')}
+                            >
+                                Free
+                            </button>
 
+                            <button
+                                className={planType == 'plus' ? 'button-plan-type-active' : 'button-plan-type'}
+                                onClick={() => setPlanType('plus')}
+                            >
+                                Plus
+                            </button>
                         </div>
                     </div>
 
@@ -111,7 +138,7 @@ export default function Register() {
                             placeholder='Número do cartão'
                             type='number'
                             max="20"
-                            maxLength = "20"
+                            maxLength="20"
                             value={creditCardNumberValue}
                             onChange={handleCreditCardNumberValueChange}
                         />
@@ -120,14 +147,10 @@ export default function Register() {
                             placeholder='CVC'
                             type='password'
                             max="3"
-                            maxLength = "3"
+                            maxLength="3"
                             value={creditCardCVCValue}
                             onChange={handleCreditCardCVCValueChange}
                         />
-
-                        <div>
-
-                        </div>
                     </form>
                 </div>
 
