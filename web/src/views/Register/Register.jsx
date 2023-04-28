@@ -78,6 +78,7 @@ export default function Register() {
         setCreditCardCVCValue('');
         setCreditCardNameValue('');
         setCreditCardNumberValue('');
+        setPlanType('');
     }
 
     return (
