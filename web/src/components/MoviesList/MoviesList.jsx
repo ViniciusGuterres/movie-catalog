@@ -188,7 +188,6 @@ export default function MoviesList({ movies, genderTitle, movieCardOnClickFuncti
 
     const handleChangeInputFilter = event => {
         setInputFilterValue(event.target.value);
-        handleFilteredMoviesChange(event.target.value)
     }
 
     return (
